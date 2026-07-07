@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My game Vault</title>
+    <style>
+        :root {
+            --bg-dark: #0b0f19;      /* Deep black-blue background */
+            --bg-card: #151d30;      /* Dark blue-grey for cards */
+            --accent-blue: #0070f3;  /* Vibrant blue for links and actions */
+            --accent-hover: #3291ff; /* Lighter blue for hover states */
+            --text-main: #ffffff;
+            --text-muted: #8a99ad;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Bar Navigation */
+        header {
+            background-color: #000000;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-blue);
+            box-shadow: 0 4px 20px rgba(0, 112, 243, 0.15);
+        }
+
+        .developer-name {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        .developer-name span {
+            color: var(--accent-blue);
+        }
+
+        .top-tag {
+            font-size: 13px;
+            background: rgba(0, 112, 243, 0.2);
+            color: var(--accent-hover);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            border: 1px solid rgba(0, 112, 243, 0.3);
+        }
+
+        /* Main Area */
+        main {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 20px;
+            flex: 1;
+        }
+
+        .section-header {
+            margin-bottom: 35px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* Game Grid Layout */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* Individual Game Card */
+        .game-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #1e2942;
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Generic styled thumbnail placeholder (No external images required) */
+        .game-thumb {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, #091326 0%, #15294a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            border-bottom: 1px solid #1e2942;
+            color: var(--accent-blue);
+        }
+
+        .game-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .game-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .game-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 25px;
+            flex: 1;
+        }
+
+        /* Download Button Styling */
+        .download-btn {
+            background-color: var(--accent-blue);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background-color 0.15s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .download-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 600px) {
+            header { padding: 15px 20px; }
+            main { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar featuring your name -->
+    <header>
+        <div class="developer-name">Alkha<span>.GAMES</span></div>
+        <div class="top-tag">Direct Downloads</div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main>
+        <div class="section-header">
+            <h2>My Projects</h2>
+            <p>Select a game below to instantly download its ZIP archive.</p>
+        </div>
+        
+        <div class="game-grid" id="gameGrid">
+            <!-- Game cards will be automatically inserted here -->
+        </div>
+    </main>
+
+    <script>
+        // Adjust titles, descriptions, and zip file targets here
+        const myGames = [
+            {
+                title: "Ravenfield",
+                desc: "A Pseudo Multiplayer game that you are fighting bot vs bot in blue side fighting the red side with rifle and vehicles example jeep,boats and heli",
+                zipFile: "Ravenfield.zip"
+            },
+            {
+                title: "AncientWarfare2",
+                desc: "A Pseudo Multiplayer game that you are also fighting bot vs bot but you can choose both side and theme are ranged from viking-musket",
+                zipFile: "AncientWarfare2.zip"
+            },
+            {
+                title: "Soon",
+                desc: "Soon",
+                zipFile: "game3.zip"
+            }
+        ];
+
+        const grid = document.getElementById('gameGrid');
+
+        myGames.forEach((game) => {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            card.innerHTML = `
+                <div class="game-thumb">🎮</div>
+                <div class="game-info">
+                    <div class="game-title">${game.title}</div>
+                    <div class="game-desc">${game.desc}</div>
+                    <a href="${game.zipFile}" download class="download-btn">
+                        Download Game (.ZIP)
+                    </a>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
